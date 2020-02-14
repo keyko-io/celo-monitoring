@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "58cadf81-43f7-42be-8b50-1590b1b519c3",
+		"name": "Celo Web3 Monitoring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Use Cases",
+			"item": [
+				{
+					"name": "Stability",
+					"item": [
+						{
+							"name": "View Exchange.getBuyAndSellBuckets",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"v_exchange-getBuyAndSellBuckets-true\",\n\t\"contractAddress\": \"0xC8FD77490A12F46709BffbCC0FCe35740Da8D860\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getBuyAndSellBuckets\",\n\t\t\"contractName\": \"Exchange\",\n\t\t\"inputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"BOOL\", \"name\": \"sellGold\", \"value\":  \"true\"}],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"currentStableBucket\"},\n\t\t  {\"position\": 1, \"type\": \"UINT256\", \"name\": \"currentGoldBucket\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 10\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"view-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Event Exchange.Exchanged",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"id\": \"e_exchange-exchanged\",\n\"contractAddress\": \"0xC8FD77490A12F46709BffbCC0FCe35740Da8D860\",\n\"eventSpecification\": {\n  \"eventName\": \"Exchanged\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"exchanger\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"sellAmount\"},\n    {\"position\": 2, \"type\": \"UINT256\", \"name\": \"buyAmount\"},\n    {\"position\": 3, \"type\": \"BOOL\", \"name\": \"soldGold\"}] }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"event-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NOT IN BAKLAVA - View Reserve.getReserveRatio",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"v_reserve-getReserveRatio\",\n\t\"contractAddress\": \"0x1726428A6D575FdC9C7C3B7bac9f2247a5649Bf2\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getReserveRatio\",\n\t\t\"contractName\": \"Reserve\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"ratio\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 5\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"view-filter"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Proof of Stake",
+					"item": [
+						{
+							"name": "Event Validators.ValidatorEpochPaymentDistributed",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cache-Control",
+										"value": "no-cache"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Postman-Token",
+										"value": "616712a3-bf11-bbf5-b4ac-b82835779d51"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"id\": \"e_validator-validatorepochpaymentdistributed\",\n\"contractAddress\": \"0xE8E4969649330B25C13a36F977487084B92a7466\",\n\"eventSpecification\": {\n  \"eventName\": \"ValidatorEpochPaymentDistributed\",\n    \"indexedParameterDefinitions\": [\n                  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"validator\"},\n                  {\"position\": 2, \"type\": \"ADDRESS\", \"name\": \"group\"}],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"validatorPayment\"},\n    {\"position\": 3, \"type\": \"UINT256\", \"name\": \"groupPayment\"}] }\n}"
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"event-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Event Election.EpochRewardsDistributedToVoters",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"id\": \"e_election-EpochRewardsDistributedToVoters\",\n\"contractAddress\": \"0x918919436BBa96e2C80CA22405aaBA075E2Ac82e\",\n\"eventSpecification\": {\n  \"eventName\": \"EpochRewardsDistributedToVoters\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"group\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"value\"}] \n\t\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"event-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View EpochRewards.getTargetGoldTotalSupply",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"v_epochRewards-getTargetGoldTotalSupply\",\n\t\"contractAddress\": \"0x188A97403db355DB1968d039aE9C1Db2c33663F7\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getTargetGoldTotalSupply\",\n\t\t\"contractName\": \"EpochRewards\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"view-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View GoldToken.totalSupply",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Cache-Control",
+										"type": "text",
+										"value": "no-cache"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"v_GoldToken_totalSupply\",\n\t\"contractAddress\": \"0x14D449EF428e679da48B3e8CfFa9036fF404B28A\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"totalSupply\",\n\t\t\"contractName\": \"GoldToken\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"view-filter"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Get All Events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Cache-Control",
+								"type": "text",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
+							"host": [
+								"{{AGENT_URL}}"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v1",
+								"event-filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Views",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Cache-Control",
+								"type": "text",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+							"host": [
+								"{{AGENT_URL}}"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v1",
+								"view-filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete View Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Cache-Control",
+								"type": "text",
+								"value": "no-cache"
+							}
+						],
+						"url": {
+							"raw": "{{AGENT_URL}}/api/rest/v1/view-filter/v_exchange-currentGoldBucket-true",
+							"host": [
+								"{{AGENT_URL}}"
+							],
+							"path": [
+								"api",
+								"rest",
+								"v1",
+								"view-filter",
+								"v_exchange-currentGoldBucket-true"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "604b8c7a-280f-4975-bbc4-4b2968caf81c",
+			"key": "AGENT_URL",
+			"value": "http://localhost:8060",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
