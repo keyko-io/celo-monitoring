@@ -83,22 +83,3 @@ services:
       KAFKA_SCHEMAREGISTRY_URL: schema-registry:18081
     networks:
       - default
-
-  web3-event-streamer:
-    image: keykoio/web3-event-streamer
-    hostname: web3-event-streamer
-    container_name: web3-event-streamer
-    depends_on:
-      - zookeeper
-      - kafka
-      - schema-registry
-      - web3-monitoring-agent
-    environment:
-      KAFKA_BOOTSTRAP_SERVER: kafka:9092
-      SCHEMA_REGISTRY_URL: schema-registry:18081
-      CONTRACT_EVENT_TOPIC: w3m-contract-events
-      CONTRACT_VIEW_TOPIC: w3m-contract-views
-      BLOCK_TOPIC: w3m-block-events
-      EVENT_BLOCK_TOPIC: w3m-event-block
-    networks:
-      - default
