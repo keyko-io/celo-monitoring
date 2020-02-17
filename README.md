@@ -39,7 +39,7 @@ You need to have running the following components:
 You can have all of them running quickly with the docker-compose.yml in the folder `docker` and using next command:
 
 ```bash
-docker-compose up
+bin/run-monitoring.bash start
 ```
 
 ### How to run the Events Streamer
@@ -62,7 +62,7 @@ For loading the configuration allowing to ingest the information required for th
 npm install -g newman
 
 # Run the API agent requests
-newman run docs/postman/agent-api.postman_collection.json 
+bin/run-monitoring.bash config 
 ```
 
 
