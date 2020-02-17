@@ -124,7 +124,7 @@ services:
     hostname: elasticsearch
     volumes:
       - type: bind
-        source: ./elasticsearch/config/elasticsearch.yml
+        source: ../config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
       - type: volume
@@ -147,7 +147,7 @@ services:
     hostname: kibana
     volumes:
       - type: bind
-        source: ./kibana/config/kibana.yml
+        source: ../config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
     ports:
