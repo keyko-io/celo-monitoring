@@ -8,7 +8,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - $HOME/mongodb/data/db:/data/db
+      - $HOME/.mongodb/data/db:/data/db
     networks:
       - default
 
@@ -79,7 +79,7 @@ services:
       ETHEREUM_CLIENT_ADDRESS: 0x0
       SPRING_DATA_MONGODB_HOST: mongo:27017
       ZOOKEEPER_ADDRESS: zookeeper:2181
-      KAFKA_ADDRESSES: kafka:9092
+      KAFKA_ADDRESSES: kafka:29092
       KAFKA_SCHEMAREGISTRY_URL: http://schema-registry:8081
     networks:
       - default
