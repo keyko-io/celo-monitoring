@@ -87,6 +87,7 @@ services:
   connect:
     image: confluentinc/cp-kafka-connect:5.4.0
     hostname: connect
+    container_name: connect
     depends_on:
       - zookeeper
       - kafka
@@ -122,15 +123,26 @@ services:
       args:
         ELK_VERSION: 7.5.2
     hostname: elasticsearch
+    container_name: elasticsearch
     volumes:
-      - $HOME/.elastic/data/db:/usr/share/elasticsearch/data:rw
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
+        read_only: false
+#
+#      - $HOME/.elastic/data/db:/usr/share/elasticsearch/data:rw
+#      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
     ports:
       - "9200:9200"
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       ELASTIC_PASSWORD: changeme
+      discovery.type: single-node
     networks:
       - default
 
@@ -140,8 +152,13 @@ services:
       args:
         ELK_VERSION: 7.5.2
     hostname: kibana
+    container_name: kibana
     volumes:
-      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+#      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - "5601:5601"
     networks:
@@ -175,4 +192,5 @@ services:
     networks:
       - default
 
-
+volumes:
+  elasticsearch:

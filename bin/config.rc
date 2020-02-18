@@ -4,3 +4,5 @@ ELASTIC_PASSWORD=changeme
 ELASTIC_URL=localhost:9200
 
 ELASTIC_DYNAMIC_TEMPLATE=$(<$__DIR/http-request-elastic-template.txt)
+KAFKA_CONNECT_CONFIG=$(<$__DIR/http-request-connect-config.txt)
+

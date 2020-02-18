@@ -84,6 +84,9 @@ if [[ $COMMAND == *"config"* ]]; then
     echo -e "* Configuring Monitoring Agent"
     newman run $__PARENT_DIR/docs/postman/agent-api.postman_collection.json
 
+    echo -e "* Configuring Kafka Connect Driver"
+    curl -X POST -H "Content-Type: application/json" --data '$KAFKA_CONNECT_CONFIG' http://localhost:8083/connectors
+
     echo -e "* Configuring Elastic Dynamic Template"
     curl -X PUT $ELASTIC_USER:$ELASTIC_PASSWORD@$ELASTIC_URL/_template/monitoring_dynamic_template -H 'Content-Type: application/json'  -d '$ELASTIC_DYNAMIC_TEMPLATE'
 
@@ -91,8 +94,9 @@ fi
 
 if [[ $COMMAND == *"reset"* ]]; then
     docker rm -f web3-monitoring-agent kafka mongo zookeeper schema-registry || echo -e "Containers removed"
-    docker ps
-    #rm -rf $HOME/mongodb/data/db
+    echo -e "Cleaning database folders"
+    sudo rm -rf $HOME/.mongodb/data/db
+    sudo rm -rf $HOME/.elastic/data/db
 fi
 
 echo -e "\n"
