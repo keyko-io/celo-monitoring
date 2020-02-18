@@ -89,7 +89,7 @@ fi
 
 if [[ $COMMAND == *"config"* ]]; then
 
-    command -v newman >/dev/null 2>&1 || {
+    command -v newman > /dev/null 2>&1 || {
       echo >&2 "To configure the Monitoring Agent via REST requets it's necessary to have installed newman locally.\nPlease check the instruction options at: https://www.npmjs.com/package/newman\n\n";
       exit 1;
     }
@@ -97,10 +97,10 @@ if [[ $COMMAND == *"config"* ]]; then
     newman run $__PARENT_DIR/docs/postman/agent-api.postman_collection.json
 
     echo -e "* Configuring Kafka Connect Driver"
-    curl -X POST -H "Content-Type: application/json" --data '$KAFKA_CONNECT_CONFIG' http://localhost:8083/connectors
+    curl -X POST -H "Content-Type: application/json" --data \'$KAFKA_CONNECT_CONFIG\' http://localhost:8083/connectors
 
     echo -e "* Configuring Elastic Dynamic Template"
-    curl -X PUT $ELASTIC_USER:$ELASTIC_PASSWORD@$ELASTIC_URL/_template/monitoring_dynamic_template -H 'Content-Type: application/json'  -d '$ELASTIC_DYNAMIC_TEMPLATE'
+    echo curl -X PUT $ELASTIC_USER:$ELASTIC_PASSWORD@$ELASTIC_URL/_template/monitoring_dynamic_template -H 'Content-Type: application/json'  -d \'$ELASTIC_DYNAMIC_TEMPLATE\'
 
 fi
 

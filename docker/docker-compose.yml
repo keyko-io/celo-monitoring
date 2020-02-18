@@ -73,10 +73,8 @@ services:
       - schema-registry
     ports:
       - 8060:8060
-#      - 8086:8086
-#      - 8081:8081
     environment:
-      ETHEREUM_NODE_URL: https://baklava-forno.celo-testnet.org
+      ETHEREUM_NODE_URL: http://192.168.0.210:8545
       ETHEREUM_CLIENT_ADDRESS: 0x0
       SPRING_DATA_MONGODB_HOST: mongo:27017
       ZOOKEEPER_ADDRESS: zookeeper:2181
