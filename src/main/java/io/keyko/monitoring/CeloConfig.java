@@ -5,22 +5,35 @@ import io.keyko.monitoring.config.StreamerConfig;
 
 public class CeloConfig extends StreamerConfig {
 
-    private static final String ACCOUNTS_AGGREGATION_TOPIC = "kafka.accounts-aggregation-topic";
-    private String accountsAggregationTopic;
+  private static final String ACCOUNTS_AGGREGATION_TOPIC = "kafka.accounts-aggregation-topic";
+  private static final String SINK_SUFFIX = "kafka.sink-suffix";
 
-    public CeloConfig(Config config) {
+  private String accountsAggregationTopic;
+  private String sinkSuffix;
 
-        super(config);
-        this.setAccountsAggregationTopic(config.getString(ACCOUNTS_AGGREGATION_TOPIC));
 
-    }
+  public CeloConfig(Config config) {
 
-    public String getAccountsAggregationTopic() {
-        return accountsAggregationTopic;
-    }
+    super(config);
+    this.setAccountsAggregationTopic(config.getString(ACCOUNTS_AGGREGATION_TOPIC));
 
-    public void setAccountsAggregationTopic(String accountsAggregationTopic) {
-        this.accountsAggregationTopic = accountsAggregationTopic;
-    }
+  }
+
+  public String getAccountsAggregationTopic() {
+    return accountsAggregationTopic;
+  }
+
+  public void setAccountsAggregationTopic(String accountsAggregationTopic) {
+    this.accountsAggregationTopic = accountsAggregationTopic;
+  }
+
+
+  public String getSinkSuffix() {
+    return sinkSuffix;
+  }
+
+  public void setSinkSuffi(String sinkSuffix) {
+    this.sinkSuffix = sinkSuffix;
+  }
 
 }
