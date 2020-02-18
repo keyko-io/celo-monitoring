@@ -73,8 +73,8 @@ services:
       - schema-registry
     ports:
       - 8060:8060
-      - 8086:8086
-      - 8081:8081
+#      - 8086:8086
+#      - 8081:8081
     environment:
       ETHEREUM_NODE_URL: https://baklava-forno.celo-testnet.org
       ETHEREUM_CLIENT_ADDRESS: 0x0
@@ -82,6 +82,7 @@ services:
       ZOOKEEPER_ADDRESS: zookeeper:2181
       KAFKA_ADDRESSES: kafka:29092
       KAFKA_SCHEMAREGISTRY_URL: http://schema-registry:8081
+      BROADCASTER_TYPE: KAFKA
     networks:
       - default
 
