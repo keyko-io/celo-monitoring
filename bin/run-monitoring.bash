@@ -73,6 +73,18 @@ fi
 if [[ $COMMAND == *"status"* ]]; then
 
     docker ps
+
+    echo -e "Schema Registry:"
+    curl http://$REGISTRY_URL/config
+
+    echo -e "Elastic Search:"
+    curl -u $ELASTIC_USER:$ELASTIC_PASSWORD -XGET $ELASTIC_URL/_cluster/health?pretty
+
+    echo -e "Kibana:"
+    curl -I  $KIBANA_URL/status
+
+    echo -e "Web3 Monitoring:"
+    curl http://$AGENT_URL/monitoring/health
 fi
 
 if [[ $COMMAND == *"config"* ]]; then
