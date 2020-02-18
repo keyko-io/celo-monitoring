@@ -99,6 +99,7 @@ if [[ $COMMAND == *"config"* ]]; then
 
     echo -e "* Configuring Kafka Connect Driver"
     curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-config.txt http://$CONNET_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-block-config.txt http://$CONNET_URL/connectors
 
     echo -e "* Configuring Elastic Dynamic Template"
     curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
