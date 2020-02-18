@@ -63,26 +63,26 @@ services:
     networks:
       - default
 
-  web3-monitoring-agent:
-    image: keykoio/web3-monitoring-agent
-    hostname: web3-monitoring-agent
-    container_name: web3-monitoring-agent
-    depends_on:
-      - zookeeper
-      - kafka
-      - schema-registry
-    ports:
-      - 8060:8060
-    environment:
-      ETHEREUM_NODE_URL: http://192.168.0.210:8545
-      ETHEREUM_CLIENT_ADDRESS: 0x0
-      SPRING_DATA_MONGODB_HOST: mongo:27017
-      ZOOKEEPER_ADDRESS: zookeeper:2181
-      KAFKA_ADDRESSES: kafka:29092
-      KAFKA_SCHEMAREGISTRY_URL: http://schema-registry:8081
-      BROADCASTER_TYPE: KAFKA
-    networks:
-      - default
+#  web3-monitoring-agent:
+#    image: keykoio/web3-monitoring-agent
+#    hostname: web3-monitoring-agent
+#    container_name: web3-monitoring-agent
+#    depends_on:
+#      - zookeeper
+#      - kafka
+#      - schema-registry
+#    ports:
+#      - 8060:8060
+#    environment:
+#      ETHEREUM_NODE_URL: http://192.168.0.210:8545
+#      ETHEREUM_CLIENT_ADDRESS: 0x0
+#      SPRING_DATA_MONGODB_HOST: mongo:27017
+#      ZOOKEEPER_ADDRESS: zookeeper:2181
+#      KAFKA_ADDRESSES: kafka:29092
+#      KAFKA_SCHEMAREGISTRY_URL: http://schema-registry:8081
+#      BROADCASTER_TYPE: KAFKA
+#    networks:
+#      - default
 
   connect:
     image: confluentinc/cp-kafka-connect:5.4.0
