@@ -1,7 +1,7 @@
 {
   "index_patterns": ["w3m*"],
   "order" : 0,
-  "version": 6,
+  "version": 1,
   "mappings": {
     "dynamic_templates": [
       {
@@ -29,6 +29,25 @@
           "mapping": {
             "type": "date",
             "format": "epoch_millis"
+          }
+        }
+      },
+      {
+        "block_timestamp": {
+          "match_mapping_type": "long",
+          "path_match":   "details.timestamp",
+          "mapping": {
+            "type": "date",
+            "format": "epoch_second"
+          }
+        }
+      },
+      {
+        "details_block_number": {
+          "match_mapping_type": "string",
+          "path_match":  "details.number",
+          "mapping": {
+            "type": "long"
           }
         }
       }
