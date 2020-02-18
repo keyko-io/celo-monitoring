@@ -16,6 +16,7 @@ public class CeloConfig extends StreamerConfig {
 
     super(config);
     this.setAccountsAggregationTopic(config.getString(ACCOUNTS_AGGREGATION_TOPIC));
+    this.setSinkSuffi(config.getString(SINK_SUFFIX));
 
   }
 
