@@ -105,7 +105,7 @@ if [[ $COMMAND == *"config"* ]]; then
 fi
 
 if [[ $COMMAND == *"reset"* ]]; then
-    docker rm -f web3-monitoring-agent kafka mongo zookeeper schema-registry || echo -e "Containers removed"
+    docker rm -f web3-monitoring-agent kafka mongo zookeeper schema-registry elasticsearch kibana || echo -e "Containers removed"
     echo -e "Cleaning database folders"
     sudo rm -rf $HOME/.mongodb/data/db
     sudo rm -rf $HOME/.elastic/data/db
