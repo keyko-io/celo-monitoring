@@ -47,10 +47,24 @@ if [[ $COMMAND == *"help"* ]]; then
 
     echo -e "Options:"
     echo -e "$0 <COMMAND>"
-    echo -e "\t - Command; comma separated list of actions to execute. Options are: help, start, config, stop, status, reset"
+    echo -e "\t - Command; comma separated list of actions to execute. Options are: help, start, config, stop, status, reset, list-topics, read-topic"
     echo -e "\n"
     exit 0
 fi
+
+if [[ $COMMAND == *"list-topics"* ]]; then
+
+    echo -e "* Listing Topics:\n"
+    docker exec -it kafka kafka-topics --bootstrap-server kafka:29092 --list
+fi
+
+
+if [[ $COMMAND == *"read-topic"* ]]; then
+
+    echo -e "* Reading from Avro Topic:\n"
+    docker exec -it schema-registry kafka-avro-console-consumer --bootstrap-server kafka:29092 --topic $2
+fi
+
 
 if [[ $COMMAND == *"pull"* ]]; then
 

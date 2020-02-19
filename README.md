@@ -36,23 +36,38 @@ You need to have running the following components:
 - Web3 Monitoring Agent
 - Elastic Search
     
-You can have all of them running quickly with the docker-compose.yml in the folder `docker` and using next command:
+You can have all of them running with the docker-compose.yml in the folder `docker` and using next command:
 
 ```bash
 bin/run-monitoring.bash start
 ```
 
-### How to run the Events Streamer
-
-The rules implementing the Celo use cases are included as part of the Events Streamer. The code of this is included as part of this repository.
-The easy way to compile and start running the events streamer is using the following commands:
-
+Starting the all the components will take a few minutes, you can check if everything is up running:
 ```bash
-mvn clean package
-java -jar target/celo-monitoring.jar 
+bin/run-monitoring.bash status
 ```
 
-### Configure the Monitoring Agent
+### How to run the Monitoring Agent
+
+When all the components look okay, you can proceed to start the [Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent). 
+You can use the Docker image or compiling/running directly the application:
+
+```bash
+cd /path/to/web3-monitoring-agent
+mvn clean package
+ETHEREUM_NODE_URL=http://localhost:8545 java -jar server/target/web3-monitoring-agent-*.jar --spring.config.location=file:server/src/main/resources/application.yml
+```
+
+At this point without further configuration, the agent is ingesting blocks and sending to Kafka.
+You can check the agent is sending the blocks listening directly from the Kafka topic:
+
+```bash
+bin/run-monitoring.bash read-topic w3m-block-events
+```
+
+Each 5 seconds approximately you should see a new line representing a block ingested in the system.
+
+### Configuring the Agent & other components
 
 As was said above, the monitoring agent can ingest blocks, transactions, events and the state of public views. This configuration can be made easily via REST Api.
 For loading the configuration allowing to ingest the information required for the Celo use cases, run the following commands:
@@ -64,6 +79,38 @@ npm install -g newman
 # Run the API agent requests
 bin/run-monitoring.bash config 
 ```
+
+The above step is also in adding the Kafka Connect & Elastic Search configuration to move the output data from Kafka to Elastic.
+
+You can check the agent is reading the information when the configured events are triggered directly from the Kafka topic:
+
+```bash
+bin/run-monitoring.bash read-topic w3m-contract-events
+```
+
+You can check the agent is reading the information pulled from public views listening directly from the Kafka topic:
+
+```bash
+bin/run-monitoring.bash read-topic w3m-contract-views
+```
+
+The rules for ingesting public views have different block intervals (between 5 and 25 blocks), so it could take a couple of minutes till you see some data comming to Kafka.
+
+
+### How to run the Processing Rules
+
+The rules implementing the Celo use cases are included as part of this repository. 
+The processing engine uses the Open Source [Keyko Web3 Events Streamer framework](https://github.com/keyko-io/web3-event-streamer/). 
+The easy way to compile and start running the processing is using the following commands:
+
+```bash
+mvn clean package
+java -jar target/celo-monitoring-engine.jar 
+```
+
+### Checking that everything is running
+
+
 
 
 ## License
