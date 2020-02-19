@@ -108,6 +108,18 @@ mvn clean package
 java -jar target/celo-monitoring-engine.jar 
 ```
 
+## Configuration
+The priority in the management of the configuration is to pass the java property in the following way:
+```-Dkafka.sink-suffix="_elastic"```
+If you are not passing in that way you can configure in your application conf to get the values as a environment variable. 
+To do that you have to pass the configuration in the following way and set the corresponding variable doing an `export SINK_SUFFIX=_elastic`:
+```hocon
+kafka{
+sink-suffix=${?SINK_SUFFIX}
+}
+``` 
+The other option is simple make the substitution in the application.conf file.
+
 ### Checking that everything is running
 
 
