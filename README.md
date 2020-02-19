@@ -10,6 +10,7 @@
          * [How to run the Monitoring Agent](#how-to-run-the-monitoring-agent)
          * [Configuring the Agent &amp; other components](#configuring-the-agent--other-components)
          * [How to run the Celo Monitoring Engine](#how-to-run-the-celo-monitoring-engine)
+         * [Celo Monitoring Engine Configuration](#celo-monitoring-engine-configuration)
          * [Monitoring Dashboard](#monitoring-dashboard)
       * [License](#license)
 
@@ -165,6 +166,18 @@ mvn clean package
 java -jar target/celo-monitoring-engine.jar 
 ```
 
+### Celo Monitoring Engine Configuration
+The priority in the management of the configuration is to pass the java property in the following way:
+```-Dkafka.sink-suffix="_elastic"```
+If you are not passing in that way you can configure in your application conf to get the values as a environment variable. 
+To do that you have to pass the configuration in the following way and set the corresponding variable doing an `export SINK_SUFFIX=_elastic`:
+```hocon
+kafka{
+sink-suffix=${?SINK_SUFFIX}
+}
+``` 
+The other option is simple make the substitution in the application.conf file.
+
 ### Monitoring Dashboard
 
 All the data should be persisted automatically in Elastic Search. You should be able to check that data is available there with some of this urls:
@@ -181,7 +194,6 @@ http://localhost:9200/w3m-exchanged_elastic/_search?q=*
 ```
 
 Also it's available a Kibana dashboard showing some data with the information available:
-
 http://localhost:5601/app/kibana#/dashboards
 
 ![High Level View](docs/images/dashboard_view.png)
