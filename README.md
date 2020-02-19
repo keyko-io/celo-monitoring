@@ -33,17 +33,17 @@ The solution is flexible to support the ingestion of additional sources of data 
 
 ## Architecture
 
-The solution architecture it's based in the following Open Source components:
+The solution architecture it's based in Keyko Web3 Monitoring Plaform and using the following Open Source components:
 
 - Keyko Web3 Monitoring Agent - Ingestion agent able to connect a network node and ingest all the data related to blocks, events, transactions and public state. The agent is configurable via API, allowing to extend the elements to fetch from the network.
-- Celo Monitoring Engine - Small processors in charge of data cleansing, cataloging and transformation facilitating further analysis and visualization. Based in Keyko event streamer framework.
+- Celo Monitoring Engine - Small processors in charge of data cleansing, cataloging and transformation facilitating further analysis and visualization. Based in Keyko Events Streamer framework.
 - Data Backbone -  Event driven data bus keeping all the incoming data and facilitating the event transformation and further persistence in real-time. Based in Kafka and Schema Registry of Confluent.  
 
 For storage  and visualization purposes, the processed data is saved in Elastic Search. Dashboards facilitating the visualization are built using Kibana.
 
 ### Data
 
-The [Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent) allows to configure the data to ingest connected to a network node. 
+The [Keyko Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent) allows to configure the data to ingest connected to a network node. 
 This data include blocks, events, state variables and transactions. Complementary to this, the architecture supports the ingestion of different sources of data, allowing to combine, enrich, aggregate multiple sources of data and generate relevant insights.
 
 Different possibilities of incoming data are:
@@ -90,7 +90,7 @@ You need to have running the following components:
 - Kafka
 - Zookeeper
 - Schema Registry
-- Web3 Monitoring Agent
+- Keyko Web3 Monitoring Agent
 - Elastic Search
     
 You can have all of them running with the docker-compose.yml in the folder `docker` and using next command:
@@ -106,7 +106,7 @@ bin/run-monitoring.bash status
 
 ### How to run the Monitoring Agent
 
-When all the components look okay, you can proceed to start the [Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent). 
+When all the components look okay, you can proceed to start the [Keyko Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent). 
 You can use the Docker image or compiling/running directly the application:
 
 ```bash
