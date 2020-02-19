@@ -62,8 +62,9 @@ fi
 
 if [[ $COMMAND == *"read-topic"* ]]; then
 
+    OPTIONS=${3:-""}
     echo -e "* Reading from Avro Topic:\n"
-    docker exec -it schema-registry kafka-avro-console-consumer --bootstrap-server kafka:29092 --topic $2
+    docker exec -it schema-registry kafka-avro-console-consumer --bootstrap-server kafka:29092 --topic $2 $OPTIONS
 fi
 
 
