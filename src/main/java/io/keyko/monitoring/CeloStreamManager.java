@@ -24,11 +24,12 @@ public class CeloStreamManager extends BaseStreamManager {
 
     final KStream<String, EventRecord> eventAvroStream = Filters.filterConfirmed(eventStream);
     KStream<String, EventBlockRecord> eventBlockStream = Transformations.joinEventWithBlock(eventAvroStream, blockTable);
-    Output.splitByEvent(eventBlockStream,"-elastic");
+
+    Output.splitByEvent(eventBlockStream,celoConfig.getSinkSuffix());
 
 
     KStream<String, ViewBlockRecord> viewBlockStream = Transformations.joinViewWithBlock(viewStream, blockTable);
-    Output.splitByView(viewBlockStream, "-elastic");
+    Output.splitByView(viewBlockStream, celoConfig.getSinkSuffix());
 
   }
 

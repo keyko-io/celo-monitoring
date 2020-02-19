@@ -1,0 +1,11 @@
+
+ELASTIC_USER=elastic
+ELASTIC_PASSWORD=changeme
+ELASTIC_URL=localhost:9200
+KIBANA_URL=localhost:5601
+
+CONNET_URL=localhost:8083
+AGENT_URL=localhost:8060
+REGISTRY_URL=localhost:18081
+
+
