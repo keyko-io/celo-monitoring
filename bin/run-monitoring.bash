@@ -9,6 +9,7 @@ COMMAND=${1:-"help"}
 __PWD=$PWD
 __DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 __PARENT_DIR=$(dirname $__DIR)
+__CONF_DIR=$__PARENT_DIR/config
 __DIR_COMPOSE=$__PARENT_DIR/docker
 __COMPOSE_FILE=$__DIR_COMPOSE/docker-compose.yml
 
@@ -108,16 +109,18 @@ if [[ $COMMAND == *"config"* ]]; then
       echo >&2 "To configure the Monitoring Agent via REST requets it's necessary to have installed newman locally.\nPlease check the instruction options at: https://www.npmjs.com/package/newman\n\n";
       exit 1;
     }
-    echo -e "* Configuring Monitoring Agent"
+    echo -e "\n\n* Configuring Monitoring Agent\n"
     newman run $__PARENT_DIR/docs/postman/agent-api.postman_collection.json
 
-    echo -e "* Configuring Kafka Connect Driver"
+    echo -e "\n\n* Configuring Kafka Connect Driver\n"
     curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-config.txt http://$CONNET_URL/connectors
     curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-block-config.txt http://$CONNET_URL/connectors
 
-    echo -e "* Configuring Elastic Dynamic Template"
+    echo -e "\n\n* Configuring Elastic Dynamic Template\n"
     curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
 
+    echo -e "\n\n* Configuring Kibana Dashboard\n"
+    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana-dashboard.ndjson
 fi
 
 if [[ $COMMAND == *"reset"* ]]; then
