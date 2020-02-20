@@ -117,50 +117,53 @@ services:
     networks:
       - default
 
-  elasticsearch:
-    build:
-      context: elasticsearch/
-      args:
-        ELK_VERSION: 7.5.2
-    hostname: elasticsearch
-    container_name: elasticsearch
-    volumes:
-      - type: bind
-        source: ./elasticsearch/config/elasticsearch.yml
-        target: /usr/share/elasticsearch/config/elasticsearch.yml
-        read_only: true
-      - type: volume
-        source: elasticsearch
-        target: /usr/share/elasticsearch/data
-        read_only: false
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+  postgres:
+    image: postgres:11-alpine
+    hostname: postgres
+    container_name: postgres
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      ELASTIC_PASSWORD: changeme
-      discovery.type: single-node
+      POSTGRES_USER: grafana
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d grafana -U grafana"]
+      timeout: 5s
+      retries: 10
     networks:
       - default
 
-  kibana:
-    build:
-      context: kibana/
-      args:
-        ELK_VERSION: 7.5.2
-    hostname: kibana
-    container_name: kibana
-    volumes:
-      - type: bind
-        source: ./kibana/config/kibana.yml
-        target: /usr/share/kibana/config/kibana.yml
-        read_only: true
+  grafana:
+    image: grafana/grafana:latest
+    hostname: grafana
+    container_name: grafana
+    depends_on:
+      - postgres
     ports:
-      - "5601:5601"
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres:5432
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=changeme
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_SSL_MODE=disable
+      - GF_SESSION_PROVIDER=postgres
+      - GF_SESSION_PROVIDER_CONFIG=user=grafana password=changeme host=grafana port=5432 dbname=grafana sslmode=disable
+      - GF_SERVER_ROUTER_LOGGING=true
+      #      - GF_LOG_CONSOLE_FORMAT=json
+      - GF_LOG_FILTERS=alerting.notifier:debug,alerting.notifier.slack:debug,auth:debug
+      - GF_AUTH_TOKEN_ROTATION_INTERVAL_MINUTES=2
     networks:
       - default
-    depends_on:
-      - elasticsearch
+
+
   ksqldb-server:
     image: confluentinc/ksqldb-server:0.6.0
     hostname: ksqldb-server
@@ -189,4 +192,5 @@ services:
       - default
 
 volumes:
-  elasticsearch:
+  postgres-data:
+  grafana-storage:
