@@ -93,11 +93,11 @@ if [[ $COMMAND == *"status"* ]]; then
     echo -e "Schema Registry:"
     curl http://$REGISTRY_URL/config
 
-    echo -e "Elastic Search:"
-    curl -u $ELASTIC_USER:$ELASTIC_PASSWORD -XGET $ELASTIC_URL/_cluster/health?pretty
-
-    echo -e "Kibana:"
-    curl -I  $KIBANA_URL/status
+#    echo -e "Elastic Search:"
+#    curl -u $ELASTIC_USER:$ELASTIC_PASSWORD -XGET $ELASTIC_URL/_cluster/health?pretty
+#
+#    echo -e "Kibana:"
+#    curl -I  $KIBANA_URL/status
 
     echo -e "Web3 Monitoring:"
     curl http://$AGENT_URL/monitoring/health
@@ -113,22 +113,26 @@ if [[ $COMMAND == *"config"* ]]; then
     echo -e "\n\n* Configuring Monitoring Agent\n"
     newman run $__PARENT_DIR/docs/postman/agent-api.postman_collection.json
 
-    echo -e "\n\n* Configuring Kafka Connect Driver\n"
-    curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-config.txt http://$CONNET_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-block-config.txt http://$CONNET_URL/connectors
+#    echo -e "\n\n* Configuring Kafka Connect Driver\n"
+#    curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-config.txt http://$CONNET_URL/connectors
+#    curl -X POST -H "Content-Type: application/json" --data @$__DIR/http-request-connect-block-config.txt http://$CONNET_URL/connectors
+#
+#    echo -e "\n\n* Configuring Elastic Dynamic Template\n"
+#    curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
+#
+#    echo -e "\n\n* Configuring Kibana Dashboard\n"
+#    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana-dashboard.ndjson
 
-    echo -e "\n\n* Configuring Elastic Dynamic Template\n"
-    curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
+    echo -e "\n\n* Configuring Postgres Datasource\n"
+    curl -X POST  -H "Content-Type: application/json"  -u $GRAFANA_USER:$GRAFANA_PASSWORD -d @$__CONF_DIR/grafana-postgres-source.json  http://$GRAFANA_URL/api/datasources
 
-    echo -e "\n\n* Configuring Kibana Dashboard\n"
-    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana-dashboard.ndjson
 fi
 
 if [[ $COMMAND == *"reset"* ]]; then
     docker rm -f web3-monitoring-agent kafka mongo zookeeper schema-registry elasticsearch kibana || echo -e "Containers removed"
     echo -e "Cleaning database folders"
     sudo rm -rf $HOME/.mongodb/data/db
-    sudo rm -rf $HOME/.elastic/data/db
+#    sudo rm -rf $HOME/.elastic/data/db
 fi
 
 echo -e "\n"

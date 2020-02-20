@@ -1,0 +1,27 @@
+{
+  "id": 1,
+  "orgId": 1,
+  "name": "PostgreSQL",
+  "type": "postgres",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "postgres:5432",
+  "password": "",
+  "user": "grafana",
+  "database": "grafana",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": true,
+  "jsonData": {
+    "postgresVersion": 1000,
+    "sslmode": "disable",
+    "timescaledb": false
+  },
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 3,
+  "readOnly": false
+}
