@@ -28,7 +28,7 @@
           "path_match":   "detailsBlock.timestamp",
           "mapping": {
             "type": "date",
-            "format": "epoch_second"
+            "format": "epoch_millis"
           }
         }
       },
@@ -38,7 +38,7 @@
           "path_match":   "details.timestamp",
           "mapping": {
             "type": "date",
-            "format": "epoch_second"
+            "format": "epoch_millis"
           }
         }
       },
