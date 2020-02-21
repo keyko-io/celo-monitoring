@@ -71,7 +71,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_exchange-exchanged\",\n\"contractAddress\": \"0xC8FD77490A12F46709BffbCC0FCe35740Da8D860\",\n\"eventSpecification\": {\n  \"eventName\": \"Exchanged\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"exchanger\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"sellAmount\"},\n    {\"position\": 2, \"type\": \"UINT256\", \"name\": \"buyAmount\"},\n    {\"position\": 3, \"type\": \"BOOL\", \"name\": \"soldGold\"}] }\n}",
+									"raw": "{\n\"id\": \"e_exchange-exchanged\",\n\"contractAddress\": \"0xC8FD77490A12F46709BffbCC0FCe35740Da8D860\",\n\"eventSpecification\": {\n  \"eventName\": \"Exchanged\",\n  \"contractName\": \"Exchange\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"exchanger\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"sellAmount\"},\n    {\"position\": 2, \"type\": \"UINT256\", \"name\": \"buyAmount\"},\n    {\"position\": 3, \"type\": \"BOOL\", \"name\": \"soldGold\"}] }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -161,7 +161,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_validator-validatorepochpaymentdistributed\",\n\"contractAddress\": \"0xE8E4969649330B25C13a36F977487084B92a7466\",\n\"eventSpecification\": {\n  \"eventName\": \"ValidatorEpochPaymentDistributed\",\n    \"indexedParameterDefinitions\": [\n                  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"validator\"},\n                  {\"position\": 2, \"type\": \"ADDRESS\", \"name\": \"group\"}],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"validatorPayment\"},\n    {\"position\": 3, \"type\": \"UINT256\", \"name\": \"groupPayment\"}] }\n}"
+									"raw": "{\n\"id\": \"e_validator-validatorepochpaymentdistributed\",\n\"contractAddress\": \"0xE8E4969649330B25C13a36F977487084B92a7466\",\n\"eventSpecification\": {\n  \"eventName\": \"ValidatorEpochPaymentDistributed\",\n  \"contractName\": \"Validators\", \n    \"indexedParameterDefinitions\": [\n                  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"validator\"},\n                  {\"position\": 2, \"type\": \"ADDRESS\", \"name\": \"group\"}],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"validatorPayment\"},\n    {\"position\": 3, \"type\": \"UINT256\", \"name\": \"groupPayment\"}] }\n}"
 								},
 								"url": {
 									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
@@ -197,7 +197,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_election-EpochRewardsDistributedToVoters\",\n\"contractAddress\": \"0x918919436BBa96e2C80CA22405aaBA075E2Ac82e\",\n\"eventSpecification\": {\n  \"eventName\": \"EpochRewardsDistributedToVoters\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"group\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"value\"}] \n\t\n  }\n}",
+									"raw": "{\n\"id\": \"e_election-EpochRewardsDistributedToVoters\",\n\"contractAddress\": \"0x918919436BBa96e2C80CA22405aaBA075E2Ac82e\",\n\"eventSpecification\": {\n  \"eventName\": \"EpochRewardsDistributedToVoters\",\n  \"contractName\": \"Election\", \n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"group\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"value\"}] \n\t\n  }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
