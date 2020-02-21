@@ -1,0 +1,52 @@
+version: '3.2'
+
+services:
+  postgres:
+    image: postgres:11-alpine
+    hostname: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: grafana
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d grafana -U grafana"]
+      timeout: 5s
+      retries: 10
+    networks:
+      - default
+
+  grafana:
+    image: grafana/grafana:latest
+    hostname: grafana
+    container_name: grafana
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=changeme
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres:5432
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=changeme
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_SSL_MODE=disable
+      - GF_SESSION_PROVIDER=postgres
+      - GF_SESSION_PROVIDER_CONFIG=user=grafana password=changeme host=grafana port=5432 dbname=grafana sslmode=disable
+      - GF_SERVER_ROUTER_LOGGING=true
+#      - GF_LOG_CONSOLE_FORMAT=json
+      - GF_LOG_FILTERS=alerting.notifier:debug,alerting.notifier.slack:debug,auth:debug
+      - GF_AUTH_TOKEN_ROTATION_INTERVAL_MINUTES=2
+    networks:
+      - default
+
+volumes:
+  postgres-data:
+  grafana-storage:
