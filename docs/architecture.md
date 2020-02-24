@@ -11,6 +11,22 @@ contributors:
 
 **Table of Contents**
 
+   * [Celo Monitoring Architecture](#celo-monitoring-architecture)
+      * [Motivation](#motivation)
+      * [Architecture](#architecture)
+         * [Ingestion Agents](#ingestion-agents)
+            * [Celo Network Agent](#celo-network-agent)
+            * [Other Agents](#other-agents)
+         * [Transport Layer](#transport-layer)
+            * [Schema Registry](#schema-registry)
+         * [Transformation](#transformation)
+         * [Data Collector](#data-collector)
+         * [API and Visualization](#api-and-visualization)
+      * [Technical Components](#technical-components)
+         * [Operation and Maintenance costs](#operation-and-maintenance-costs)
+      * [References](#references)
+      * [Language](#language)
+
 
 ---
 
@@ -77,6 +93,14 @@ This agent is provided using the [Keyko Web3 Monitoring Agent](https://github.co
 More information about how to subscribe to events, transactions and views of the public state can be found in 
 the [API doc page](https://github.com/keyko-io/web3-monitoring-agent/blob/master/doc/api.md).
 
+Some agent features:
+ 
+- Failover support - If the agent stops and it's started again it recovers from the last block processed
+- Replay - The agent can start to read from any block specified by the agent operator. It allows to "replay" the whole network from block 1
+- Dynamically Configurable - It exposes a REST api so that smart contract events/views can be dynamically subscribed / unsubscribed.
+- Highly Available - The instances communicate with each other to ensure that every instance is subscribed to the same collection of smart contract events.
+
+
 #### Other Agents
 
 Because the open design of the data backbone and the architecture, additional agents can be implemented to capture data from different sources.
@@ -100,23 +124,63 @@ It provides an API with the solution schema metadata, allowing for third-compone
 
 ### Transformation
 
+It uses small agents to consume and transform the data in real time. 
+It allows generate information & insights from all the different incoming data. Supports the implementation of the following use cases:
+
+- Cleansing, filtering and cataloging of incoming data
+- Preparation of the information for further persistence in different data stores
+- Joining of events in real time of independent topics
+- Data enrichment with external sources of information
+- Alerts detection
+- Materialised Views
+- Complex Event Processing
+- The combination of all the above 
+
+
+![Transformation Layer](images/layer_transformation.png)
 
 
 ### Data Collector
 
 Retrieves the information in real time from different transport layer topics and persist in different data stores.
-Allows a basic adaptation of the events allowing to persist in ElasticSearch, MongoDB, PostgreSQL, etc. 
-
+Allows a basic adaptation of the events allowing to persist in ElasticSearch, MongoDB, PostgreSQL, Big Query, etc. 
+The same information and insights can be sent to different data stores adapted to different consumers 
+(internal to Celo or to be used by the community)
 
 ### API and Visualization
+
+Having the data in different data stores, this layer allows the easy consumption of the data by different users.
+Dashboards can be built using different solutions allowing users to consume the information in different ways 
+via specific visualizations. 
+Depending on the nature of the data this can be consumed via user queries, graphs and tables.
 
 
 ## Technical Components
 
+The current solution is using the following technical components (all of them Open Source):
 
- 
+- Ingestion Agent:
+  * [Keyko Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent)
+- Transport Layer:
+  * [Apache Kafka](https://github.com/apache/kafka/)
+  * [Schema Registry](https://github.com/confluentinc/schema-registry)
+- Transformation Layer:
+  * [Kafka Streams](https://kafka.apache.org/documentation/streams/)
+- Data Collector:
+  * [Kafka Connect](https://kafka.apache.org/documentation/#connect)
+- Visualization & API:
+  * [Elastic Search](https://github.com/elastic/elasticsearch)
+  * [Kibana](https://github.com/elastic/kibana)
 
+### Operation and Maintenance costs
 
+All the technical components part of the architecture can be executed as a service as part of the Google Cloud Platform:
+
+- https://www.elastic.co/elasticsearch/service
+- https://www.confluent.io/blog/announcing-confluent-cloud-for-apache-kafka-native-service-on-google-cloud-platform
+
+It reduces the costs of operation and maintenance of the solution and allows to scale out without increasing the complexity
+of the current infrastructure operations.
 
 
 
@@ -124,6 +188,8 @@ Allows a basic adaptation of the events allowing to persist in ElasticSearch, Mo
 ## References
 
 * [FLOSS (Free Libre Open Source Software)](https://www.gnu.org/philosophy/floss-and-foss.en.html)
+* [Elastic and Kibana as a Service](https://www.elastic.co/elasticsearch/service)
+* [Conflient stack (Kafka & co.) as a Service in GCP](https://www.confluent.io/blog/announcing-confluent-cloud-for-apache-kafka-native-service-on-google-cloud-platform)
 
 ## Language
 
