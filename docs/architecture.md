@@ -52,7 +52,7 @@ The main motivations of the Celo monitoring tool are:
 
 ## Architecture
 
-Based in the above motivations, the architecture provides a end to end data pipeline where:
+Based in the above motivations, the architecture provides an end to end data pipeline where:
 
 - The data can be ingested/extracted from different sources
 - The data is sent to highly-available and resilient data bus
