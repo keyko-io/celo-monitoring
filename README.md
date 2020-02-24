@@ -42,6 +42,8 @@ The solution architecture it's based in Keyko Web3 Monitoring Platform and using
 
 For storage  and visualization purposes, the processed data is saved in Elastic Search. Dashboards facilitating the visualization are built using Kibana.
 
+Further details can be found in the [architecture documentation page](docs/architecture.md).
+
 ### Data
 
 The [Keyko Web3 Monitoring Agent](https://github.com/keyko-io/web3-monitoring-agent) allows to configure the data to ingest connected to a network node. 
