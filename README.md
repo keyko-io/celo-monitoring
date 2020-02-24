@@ -34,13 +34,15 @@ The solution is flexible to support the ingestion of additional sources of data 
 
 ## Architecture
 
-The solution architecture it's based in Keyko Web3 Monitoring Plaform and using the following Open Source components:
+The solution architecture it's based in Keyko Web3 Monitoring Platform and using the following Open Source components:
 
 - Keyko Web3 Monitoring Agent - Ingestion agent able to connect a network node and ingest all the data related to blocks, events, transactions and public state. The agent is configurable via API, allowing to extend the elements to fetch from the network.
 - Celo Monitoring Engine - Small processors in charge of data cleansing, cataloging and transformation facilitating further analysis and visualization. Based in Keyko Events Streamer framework.
 - Data Backbone -  Event driven data bus keeping all the incoming data and facilitating the event transformation and further persistence in real-time. Based in Kafka and Schema Registry of Confluent.  
 
 For storage  and visualization purposes, the processed data is saved in Elastic Search. Dashboards facilitating the visualization are built using Kibana.
+
+Further details can be found in the [architecture documentation page](docs/architecture.md).
 
 ### Data
 
