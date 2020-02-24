@@ -38,17 +38,17 @@ The main motivations of the Celo monitoring tool are:
 
 * Design a end to end solution able to surface the most relevant network health KPIs allowing 
   to take decisions with the information given
-* Facilitates to the Protocol Economics tool to understand what's the health of the network in real time
+* Facilitate to the Protocol Economics team to understand the health of the network in real time
 * Provide a solution that allows to engage the community. Supports the delivery of information and 
   knowledge to the community, opening the possibility of users engagement.
-* Provides an architecture able to scale, avoiding to re-architect the solution in the short term 
+* Provide an architecture able to scale, avoiding to re-architect the solution in the short term 
 * Flexible & easy to ingest from multiple sources of data
-* Facilitates to get benefit of the existing data and build insights and alerts 
-* Allows to consolidate and export the data ready to be used internally (Circles, ) or with the 
+* Facilitate to get benefit of the existing data and build insights and alerts 
+* Allow to consolidate and export the data ready to be used internally (Circles, ) or with the 
   external community (validators, users, ..)
-* Promotes the transparency and facilitates to engage the community allowing them to build on top of Celo
-* Provides a solution reducing the operational and maintenance costs
-* Provides a solution using Open Source Software
+* Promote the transparency and facilitates to engage the community allowing them to build on top of Celo
+* Provide a solution reducing the operational and maintenance costs
+* Provide a solution using only [FLOSS (Free Libre Open Source Software)](https://www.gnu.org/philosophy/floss-and-foss.en.html)
 
 ## Architecture
 
