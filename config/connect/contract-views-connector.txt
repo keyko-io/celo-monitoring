@@ -1,0 +1,15 @@
+{
+	"name": "w3m-contract-views",
+	"config": {
+		"connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+		"tasks.max": 1,
+		"connection.url": "http://elasticsearch:9200",
+		"connection.username": "elastic",
+		"connection.password": "changeme",
+		"value.converter.schema.registry.url": "http://localhost:8081",
+		"type.name": "_doc",
+		"topics": "w3m-contract-views",
+		"key.ignore": "false",
+		"schema.ignore": "false"
+	}
+}
