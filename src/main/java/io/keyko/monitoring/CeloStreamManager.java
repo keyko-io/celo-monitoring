@@ -27,9 +27,11 @@ public class CeloStreamManager extends BaseStreamManager {
 
     Output.splitByEvent(eventBlockStream,celoConfig.getSinkSuffix());
 
-
     KStream<String, ViewBlockRecord> viewBlockStream = Transformations.joinViewWithBlock(viewStream, blockTable);
     Output.splitByView(viewBlockStream, celoConfig.getSinkSuffix());
+
+    KStream<String, TimeSeriesRecord> timeSeriesStream = Transformations.transformToTimeSeries(viewBlockStream);
+    Output.splitByTimeSeries(timeSeriesStream, celoConfig.getSinkSuffix());
 
   }
 

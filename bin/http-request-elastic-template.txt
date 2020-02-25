@@ -5,6 +5,16 @@
   "mappings": {
     "dynamic_templates": [
       {
+      "timeseries_timestamp": {
+         "match_mapping_type": "long",
+         "path_match":   "timestamp",
+         "mapping": {
+           "type": "date",
+           "format": "epoch_millis"
+         }
+       }
+      },
+      {
         "block_timestamp_as_timestamp": {
           "match_mapping_type": "long",
           "path_match":   "detailsBlock.timestamp",
