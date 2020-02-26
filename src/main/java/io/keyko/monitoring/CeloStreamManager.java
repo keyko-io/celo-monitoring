@@ -33,6 +33,9 @@ public class CeloStreamManager extends BaseStreamManager {
     KStream<String, TimeSeriesRecord> timeSeriesStream = Transformations.transformToTimeSeries(viewBlockStream);
     Output.splitByTimeSeries(timeSeriesStream, celoConfig.getSinkSuffix());
 
+    KStream<String, TimeSeriesRecord> timeSeriesEventStream = Transformations.transformEventToTimeSeries(eventBlockStream);
+    Output.splitByTimeSeries(timeSeriesEventStream, celoConfig.getSinkSuffix());
+
   }
 
   public static void main(final String[] args) throws Exception {
