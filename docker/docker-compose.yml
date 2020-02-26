@@ -121,7 +121,7 @@ services:
     build:
       context: elasticsearch/
       args:
-        ELK_VERSION: 7.5.2
+        ELK_VERSION: 7.6.0
     hostname: elasticsearch
     container_name: elasticsearch
     volumes:
@@ -147,7 +147,7 @@ services:
     build:
       context: kibana/
       args:
-        ELK_VERSION: 7.5.2
+        ELK_VERSION: 7.6.0
     hostname: kibana
     container_name: kibana
     volumes:

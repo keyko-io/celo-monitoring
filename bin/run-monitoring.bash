@@ -126,6 +126,7 @@ if [[ $COMMAND == *"config"* ]]; then
     echo -e "\n\n* Configuring Kibana Dashboard\n"
     curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/kibana-dashboard.ndjson
     curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/monitoring-dashboard.ndjson
+    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/stability-dashboard.ndjson
 
 fi
 
