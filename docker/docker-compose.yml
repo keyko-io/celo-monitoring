@@ -121,7 +121,7 @@ services:
     build:
       context: elasticsearch/
       args:
-        ELK_VERSION: 7.5.2
+        ELK_VERSION: 7.6.0
     hostname: elasticsearch
     container_name: elasticsearch
     volumes:
@@ -147,7 +147,7 @@ services:
     build:
       context: kibana/
       args:
-        ELK_VERSION: 7.5.2
+        ELK_VERSION: 7.6.0
     hostname: kibana
     container_name: kibana
     volumes:
@@ -161,32 +161,5 @@ services:
       - default
     depends_on:
       - elasticsearch
-  ksqldb-server:
-    image: confluentinc/ksqldb-server:0.6.0
-    hostname: ksqldb-server
-    container_name: ksqldb-server
-    depends_on:
-      - kafka
-    ports:
-      - "8088:8088"
-    environment:
-      KSQL_LISTENERS: http://0.0.0.0:8088
-      KSQL_BOOTSTRAP_SERVERS: kafka:29092
-      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
-      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
-      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-    networks:
-      - default
-
-  ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.6.0
-    container_name: ksqldb-cli
-    depends_on:
-      - ksqldb-server
-    entrypoint: /bin/sh
-    tty: true
-    networks:
-      - default
-
 volumes:
   elasticsearch:
