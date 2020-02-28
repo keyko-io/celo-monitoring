@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "58cadf81-43f7-42be-8b50-1590b1b519c3",
+		"_postman_id": "e80096b3-34e7-4e54-92cb-7071c3f6809f",
 		"name": "Celo Web3 Monitoring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -118,6 +118,41 @@
 											"language": "json"
 										}
 									}
+								},
+								"url": {
+									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
+									"host": [
+										"{{AGENT_URL}}"
+									],
+									"path": [
+										"api",
+										"rest",
+										"v1",
+										"view-filter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View Reserve.getReserveGoldBalance",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"v_reserve-getReserveGoldBalance\",\n\t\"contractAddress\": \"0x1726428A6D575FdC9C7C3B7bac9f2247a5649Bf2\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getReserveGoldBalance\",\n\t\t\"contractName\": \"Reserve\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"goldBalance\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}"
 								},
 								"url": {
 									"raw": "{{AGENT_URL}}/api/rest/v1/view-filter",
