@@ -118,6 +118,8 @@ fi
 if [[ $COMMAND == *"config"* ]]; then
 #    set -x
 
+    echo -e "\n\n* Configuring Elastic Dynamic Template\n"
+    curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
@@ -125,9 +127,6 @@ if [[ $COMMAND == *"config"* ]]; then
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector.txt http://$CONNET_URL/connectors
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-events-connector.txt http://$CONNET_URL/connectors
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector.txt http://$CONNET_URL/connectors
-
-    echo -e "\n\n* Configuring Elastic Dynamic Template\n"
-    curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
 
     echo -e "\n\n* Configuring Kibana Dashboard\n"
     curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/kibana-dashboard.ndjson
