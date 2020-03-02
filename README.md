@@ -95,6 +95,7 @@ You need to have running the following components:
 - Schema Registry
 - Keyko Web3 Monitoring Agent
 - Elastic Search
+- Kibana
     
 You can have all of them running with the docker-compose.yml in the folder `docker` and using next command:
 

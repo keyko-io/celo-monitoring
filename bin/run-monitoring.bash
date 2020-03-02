@@ -103,8 +103,8 @@ if [[ $COMMAND == *"status"* ]]; then
     curl http://$AGENT_URL/monitoring/health
 fi
 
-if [[ $COMMAND == *"config"* ]]; then
-#    set -x
+
+if [[ $COMMAND == *"config-agent"* ]]; then
 
     command -v newman > /dev/null 2>&1 || {
       echo >&2 "To configure the Monitoring Agent via REST requets it's necessary to have installed newman locally.\nPlease check the instruction options at: https://www.npmjs.com/package/newman\n\n";
@@ -112,6 +112,12 @@ if [[ $COMMAND == *"config"* ]]; then
     }
     echo -e "\n\n* Configuring Monitoring Agent\n"
     newman run $__PARENT_DIR/docs/postman/agent-api.postman_collection.json
+
+fi
+
+if [[ $COMMAND == *"config"* ]]; then
+#    set -x
+
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
