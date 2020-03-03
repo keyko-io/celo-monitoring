@@ -41,14 +41,14 @@ public class CeloStreamManager extends BaseStreamManager {
     KStream<String, TimeSeriesRecord> timeSeriesEventStream = Transformations.transformEventToTimeSeries(eventBlockStream);
     Output.splitByTimeSeries(timeSeriesEventStream, celoConfig.getSinkSuffix());
 
-    KStream<String, TimeSeriesRecord> epochRewardsGetTargetGetGoldTotalSupplyStream = this.builder.stream(
-      celoConfig.getEpochRewardsGetTargetGetGoldTotalSupplyTopic(), Consumed.with(Serdes.String(), Web3MonitoringSerdes.getTimeSerieserde()));
-    KStream<String, TimeSeriesRecord> goldTokenTotalSupplyStream = this.builder.stream(
-      celoConfig.getGoldTokenTotalSupplyTopic(), Consumed.with(Serdes.String(), Web3MonitoringSerdes.getTimeSerieserde()));
-
-    EpochRewardsAggregation.joinEpochGetArgGetGoldTotalSupplyWithGoldTokenTotalSupply(
-      epochRewardsGetTargetGetGoldTotalSupplyStream, goldTokenTotalSupplyStream)
-      .to(celoConfig.getEpochRewardsAggregationTopic(), Produced.with(Serdes.Long(), Web3MonitoringSerdes.getTimeSerieserde()));
+//    KStream<String, TimeSeriesRecord> epochRewardsGetTargetGetGoldTotalSupplyStream = this.builder.stream(
+//      celoConfig.getEpochRewardsGetTargetGetGoldTotalSupplyTopic(), Consumed.with(Serdes.String(), Web3MonitoringSerdes.getTimeSerieserde()));
+//    KStream<String, TimeSeriesRecord> goldTokenTotalSupplyStream = this.builder.stream(
+//      celoConfig.getGoldTokenTotalSupplyTopic(), Consumed.with(Serdes.String(), Web3MonitoringSerdes.getTimeSerieserde()));
+//
+//    EpochRewardsAggregation.joinEpochGetArgGetGoldTotalSupplyWithGoldTokenTotalSupply(
+//      epochRewardsGetTargetGetGoldTotalSupplyStream, goldTokenTotalSupplyStream)
+//      .to(celoConfig.getEpochRewardsAggregationTopic(), Produced.with(Serdes.Long(), Web3MonitoringSerdes.getTimeSerieserde()));
 
   }
 
