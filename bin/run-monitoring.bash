@@ -48,7 +48,7 @@ if [[ $COMMAND == *"help"* ]]; then
 
     echo -e "Options:"
     echo -e "$0 <COMMAND>"
-    echo -e "\t - Command; comma separated list of actions to execute. Options are: help, start, config, stop, status, reset, list-topics, read-topic"
+    echo -e "\t - Command; comma separated list of actions to execute. Options are: help, start, config-agent, config, stop, status, reset, list-topics, read-topic"
     echo -e "\n"
     exit 0
 fi
