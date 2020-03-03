@@ -9,11 +9,19 @@ import io.keyko.monitoring.preprocessing.Transformations;
 import io.keyko.monitoring.schemas.*;
 import io.keyko.monitoring.serde.Web3MonitoringSerdes;
 import io.keyko.monitoring.stream.BaseStreamManager;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.AdminClientConfig;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.common.internals.Topic;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Produced;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Properties;
 
 public class CeloStreamManager extends BaseStreamManager {
 
@@ -40,6 +48,17 @@ public class CeloStreamManager extends BaseStreamManager {
 
     KStream<String, TimeSeriesRecord> timeSeriesEventStream = Transformations.transformEventToTimeSeries(eventBlockStream);
     Output.splitByTimeSeries(timeSeriesEventStream, celoConfig.getSinkSuffix());
+
+    // Create topics that are going to be needed for the joins.
+    Properties props = new Properties();
+    props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, celoConfig.getKafkaServer());
+    AdminClient a = AdminClient.create(props);
+    a.createTopics(Arrays.asList(
+      new NewTopic(celoConfig.getEpochRewardsAggregationTopic(), 1, (short) 1),
+      new NewTopic(celoConfig.getEpochRewardsGetTargetGetGoldTotalSupplyTopic(), 1, (short) 1),
+      new NewTopic(celoConfig.getGoldTokenTotalSupplyTopic(),1, (short) 1)
+      )
+    );
 
     KStream<String, TimeSeriesRecord> epochRewardsGetTargetGetGoldTotalSupplyStream = this.builder.stream(
       celoConfig.getEpochRewardsGetTargetGetGoldTotalSupplyTopic(), Consumed.with(Serdes.String(), Web3MonitoringSerdes.getTimeSerieserde()));
