@@ -94,7 +94,7 @@
 							"response": []
 						},
 						{
-							"name": "PENDING - View SortedOracles.StableToken.medianRate",
+							"name": "View SortedOracles.StableToken.medianRate",
 							"request": {
 								"method": "POST",
 								"header": [
