@@ -77,7 +77,7 @@ fi
 if [[ $COMMAND == *"start"* ]]; then
 
     echo -e "* Starting containers"
-    docker-compose -f $__COMPOSE_FILE up
+    docker-compose -f $__COMPOSE_FILE up -d
 fi
 
 if [[ $COMMAND == *"stop"* ]]; then
