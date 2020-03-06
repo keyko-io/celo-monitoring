@@ -4,9 +4,9 @@ import com.typesafe.config.Config;
 import io.keyko.monitoring.config.StreamerConfig;
 
 public class CeloConfig extends StreamerConfig {
-  private static final String EPOCH_REWARDS_GET_TARGET_GET_GOLD_TOTAL_SUPPLY_TOPIC = "kafka.epoch-rewards-get-target-get-gold-total-supply-topic";
-  private static final String GOLD_TOKEN_TOTAL_SUPPLY_TOPIC = "kafka.gold-token-total-supply-topic";
-  private static final String EPOCH_REWARDS_AGGREGATION_TOPIC = "kafka.epoch-rewards-aggregation-topic";
+  private static final String EPOCH_REWARDS_GET_TARGET_GET_GOLD_TOTAL_SUPPLY_TOPIC = "kafka.topics.epoch-rewards-get-target-get-gold-total-supply-topic";
+  private static final String GOLD_TOKEN_TOTAL_SUPPLY_TOPIC = "kafka.topics.gold-token-total-supply-topic";
+  private static final String EPOCH_REWARDS_AGGREGATION_TOPIC = "kafka.topics.epoch-rewards-aggregation-topic";
   private static final String SINK_SUFFIX = "kafka.sink-suffix";
 
   private String epochRewardsGetTargetGetGoldTotalSupplyTopic;
