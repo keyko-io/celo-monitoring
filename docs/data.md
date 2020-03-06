@@ -9,6 +9,18 @@ curl --location -u $ELASTIC_USER:$ELASTIC_PASSWORD -X GET 'http://localhost:9200
 --data-raw ''
 ```
 
+## Dashboards
+
+Here you have a list of the existing Kibana Dashboards: 
+
+Name | Description | Url Dashboard
+-----|-------------|-------------
+Proof of Stake | Main proof of stake indicators, mainly related with the rewards distributed to Validators, Groups and Voters | http://localhost:5601/app/kibana#/dashboard/9a25b200-5f9c-11ea-8b2c-2942e4fad9b8?_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15d%2Cto%3Anow))
+Stability | Key stability indicators (CGold Balance, amounts exchanged, medianRate, etc.) | http://localhost:5601/app/kibana#/dashboard/af5d21d0-586c-11ea-aa1c-5dd117a31dfd?_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15d%2Cto%3Anow))
+Monitoring | Key monitoring indicators like blocks, events, views, etc. | http://localhost:5601/app/kibana#/dashboard/9fc3df10-57e6-11ea-9421-39e78e9111f6?_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15d%2Cto%3Anow))
+
+## Metrics
+
 Here you have a list of the existing metrics created: 
 
 Metric | Type | Url Elastic | Url Schema | Url Dashboard
@@ -23,6 +35,8 @@ Validator Epoch Payment Distributed| Event | [Elastic Index](http://localhost:92
 Target Voting Yield updated| Event| [Elastic Index](http://localhost:9200/w3m-targetvotingyieldupdated_elastic/_search?q=*) | [Schema](http://localhost:18081/subjects/w3m-targetvotingyieldupdated_elastic-value/versions/1) | [Explore in Kibana](http://localhost:5601/app/kibana#/dashboard/9fc3df10-57e6-11ea-9421-39e78e9111f6)
 Buy And Sell Buckets | View | [Elastic Index](http://localhost:9200/w3m-exchange-getbuyandsellbuckets_elastic/_search?q=*) | [Schema](http://localhost:18081/subjects/w3m-exchange-getbuyandsellbuckets_elastic-value/versions/1) | [Explore in Kibana](http://localhost:5601/app/kibana#/dashboard/af5d21d0-586c-11ea-aa1c-5dd117a31dfd)
 Median rate| View | [Elastic Index](http://localhost:9200/w3m-sortedoracles-medianrate_elastic/_search?q=*) | [Schema](http://localhost:18081/subjects/w3m-sortedoracles-medianrate_elastic-value/versions/1) | [Explore in Kibana](http://localhost:5601/app/kibana#/dashboard/9fc3df10-57e6-11ea-9421-39e78e9111f6)
+
+## Historic Data
 
 In addition to this, the historic data of Blocks, Events and Views crawled by the agent can be found in the following pages:
 
