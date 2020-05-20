@@ -91,7 +91,7 @@ if [[ $COMMAND == *"status"* ]]; then
     docker ps
 
     echo -e "Schema Registry:"
-    curl http://$REGISTRY_URL/config
+    curl http://$KAFKA_SCHEMAREGISTRY_URL/config
 
     echo -e "Elastic Search:"
     curl -u $ELASTIC_USER:$ELASTIC_PASSWORD -XGET $ELASTIC_URL/_cluster/health?pretty
@@ -123,10 +123,10 @@ if [[ $COMMAND == *"config"* ]]; then
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config.txt http://$CONNET_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector.txt http://$CONNET_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-events-connector.txt http://$CONNET_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector.txt http://$CONNET_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-events-connector.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector.txt http://$CONNECT_URL/connectors
 
     echo -e "\n\n* Configuring Kibana Dashboard\n"
     curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/pos-dashboard.ndjson
