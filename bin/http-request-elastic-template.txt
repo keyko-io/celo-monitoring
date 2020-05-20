@@ -1,5 +1,5 @@
 {
-  "index_patterns": ["w3m*"],
+  "index_patterns": ["celo-w3m*"],
   "order" : 0,
   "version": 1,
   "mappings": {
