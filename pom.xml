@@ -13,7 +13,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <keyko.streamer.version>0.1.5</keyko.streamer.version>
+    <keyko.streamer.version>0.1.6</keyko.streamer.version>
+    <org.slf4j.version>1.7.5</org.slf4j.version>
   </properties>
 
   <licenses>
@@ -58,12 +59,12 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.5</version>
+      <version>${org.slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.5</version>
+      <version>${org.slf4j.version}</version>
     </dependency>
 
   </dependencies>
