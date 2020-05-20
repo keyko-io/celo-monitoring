@@ -13,7 +13,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <keyko.streamer.version>0.1.6</keyko.streamer.version>
+    <keyko.streamer.version>0.2.9</keyko.streamer.version>
     <org.slf4j.version>1.7.5</org.slf4j.version>
   </properties>
 

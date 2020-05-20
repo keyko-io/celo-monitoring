@@ -25,7 +25,7 @@ public class CeloStreamManager extends BaseStreamManager {
   }
 
   @Override
-  protected void processStreams(KStream<String, EventRecord> eventStream, KStream<String, ViewRecord> viewStream, KTable<String, BlockRecord> blockTable) {
+  protected void processStreams(KStream<String, EventRecord> eventStream, KStream<String, ViewRecord> viewStream, KStream<String, LogRecord> logStream, KTable<String, BlockRecord> blockTable) {
 
     final KStream<String, EventRecord> eventAvroStream = Filters.filterConfirmed(eventStream);
     KStream<String, EventBlockRecord> eventBlockStream = Transformations.joinEventWithBlock(eventAvroStream, blockTable);
