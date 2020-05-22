@@ -123,10 +123,15 @@ if [[ $COMMAND == *"config"* ]]; then
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config.txt http://$CONNECT_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector.txt http://$CONNECT_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-events-connector.txt http://$CONNECT_URL/connectors
-    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector.txt http://$CONNECT_URL/connectors
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/connect-config.txt > $__CONF_DIR/connect/connect-config-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-blocks-connector.txt > $__CONF_DIR/connect/contract-blocks-connector-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-events-connector.txt > $__CONF_DIR/connect/contract-events-connector-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-views-connector.txt > $__CONF_DIR/connect/contract-views-connector-replaced.txt
+
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config-replaced.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector-replaced.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-events-connector-replaced.txt http://$CONNECT_URL/connectors
+    curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector-replaced.txt http://$CONNECT_URL/connectors
 
     echo -e "\n\n* Configuring Kibana Dashboard\n"
     curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/pos-dashboard.ndjson
