@@ -1,5 +1,5 @@
 {
-	"name": "w3m-contract-views",
+	"name": "celo-w3m-contract-views",
 	"config": {
 		"connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
 		"tasks.max": 1,
@@ -8,7 +8,7 @@
 		"connection.password": "changeme",
 		"value.converter.schema.registry.url": "http://localhost:8081",
 		"type.name": "_doc",
-		"topics": "w3m-contract-views",
+		"topics": "celo-w3m-contract-views",
 		"key.ignore": "false",
 		"schema.ignore": "false"
 	}

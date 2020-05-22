@@ -8,7 +8,7 @@
 		"connection.password": "changeme",
 		"value.converter.schema.registry.url": "http://localhost:8081",
 		"type.name": "_doc",
-		"topics.regex": "w3m-block-events",
+		"topics.regex": "celo-w3m-block-events",
         "key.ignore": "false",
 		"schema.ignore": "false"
 	}
