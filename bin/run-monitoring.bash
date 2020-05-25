@@ -123,10 +123,10 @@ if [[ $COMMAND == *"config"* ]]; then
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
-    envsubst '$ELASTIC_URL,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/connect-config.txt > $__CONF_DIR/connect/connect-config-replaced.txt
-    envsubst '$ELASTIC_URL,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-blocks-connector.txt > $__CONF_DIR/connect/contract-blocks-connector-replaced.txt
-    envsubst '$ELASTIC_URL,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-events-connector.txt > $__CONF_DIR/connect/contract-events-connector-replaced.txt
-    envsubst '$ELASTIC_URL,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-views-connector.txt > $__CONF_DIR/connect/contract-views-connector-replaced.txt
+    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/connect-config.txt > $__CONF_DIR/connect/connect-config-replaced.txt
+    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-blocks-connector.txt > $__CONF_DIR/connect/contract-blocks-connector-replaced.txt
+    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-events-connector.txt > $__CONF_DIR/connect/contract-events-connector-replaced.txt
+    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-views-connector.txt > $__CONF_DIR/connect/contract-views-connector-replaced.txt
 
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config-replaced.txt http://$CONNECT_URL/connectors
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector-replaced.txt http://$CONNECT_URL/connectors

@@ -7,7 +7,7 @@
 		"value.converter.schema.registry.url": "$KAFKA_SCHEMAREGISTRY_URL",
 		"type.name": "_doc",
 		"topics": "celo-w3m-contract-events",
-		"key.ignore": "false",
-		"schema.ignore": "false"
+    "key.ignore": "$KEY_IGNORE" ,
+		"schema.ignore": "$SCHEMA_IGNORE"
 	}
 }
