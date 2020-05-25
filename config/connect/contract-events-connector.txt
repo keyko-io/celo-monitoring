@@ -4,8 +4,6 @@
 		"connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
 		"tasks.max": 1,
 		"connection.url": "http://$ELASTIC_URL",
-		"connection.username": "$ELASTIC_USER",
-		"connection.password": "$ELASTIC_PASSWORD",
 		"value.converter.schema.registry.url": "$KAFKA_SCHEMAREGISTRY_URL",
 		"type.name": "_doc",
 		"topics": "celo-w3m-contract-events",
