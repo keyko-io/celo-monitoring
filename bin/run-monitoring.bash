@@ -94,7 +94,7 @@ if [[ $COMMAND == *"status"* ]]; then
     curl http://$KAFKA_SCHEMAREGISTRY_URL/config
 
     echo -e "Elastic Search:"
-    curl  -XGET $ELASTIC_URL/_cluster/health?pretty
+    curl -u $ELASTIC_USER:$ELASTIC_PASSWORD -XGET $ELASTIC_URL/_cluster/health?pretty
 
     echo -e "Kibana:"
     curl -I  $KIBANA_URL/status
@@ -119,14 +119,14 @@ if [[ $COMMAND == *"config"* ]]; then
 #    set -x
 
     echo -e "\n\n* Configuring Elastic Dynamic Template\n"
-    curl -X PUT -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
+    curl -X PUT -u $ELASTIC_USER:$ELASTIC_PASSWORD -H "Content-Type: application/json"  --data @$__DIR/http-request-elastic-template.txt http://$ELASTIC_URL/_template/monitoring_dynamic_template
 
     echo -e "\n\n* Configuring Kafka Connect Driver\n"
 
-    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/connect-config.txt > $__CONF_DIR/connect/connect-config-replaced.txt
-    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-blocks-connector.txt > $__CONF_DIR/connect/contract-blocks-connector-replaced.txt
-    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-events-connector.txt > $__CONF_DIR/connect/contract-events-connector-replaced.txt
-    envsubst '$ELASTIC_URL,"$KEY_IGNORE","$SCHEMA_IGNORE",$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-views-connector.txt > $__CONF_DIR/connect/contract-views-connector-replaced.txt
+    envsubst '$ELASTIC_URL, $ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/connect-config.txt > $__CONF_DIR/connect/connect-config-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER",$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-blocks-connector.txt > $__CONF_DIR/connect/contract-blocks-connector-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-events-connector.txt > $__CONF_DIR/connect/contract-events-connector-replaced.txt
+    envsubst '$ELASTIC_URL,$ELASTIC_USER,$ELASTIC_PASSWORD,$KAFKA_SCHEMAREGISTRY_URL' <$__CONF_DIR/connect/contract-views-connector.txt > $__CONF_DIR/connect/contract-views-connector-replaced.txt
 
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/connect-config-replaced.txt http://$CONNECT_URL/connectors
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-blocks-connector-replaced.txt http://$CONNECT_URL/connectors
@@ -134,9 +134,9 @@ if [[ $COMMAND == *"config"* ]]; then
     curl -X POST -H "Content-Type: application/json" --data @$__CONF_DIR/connect/contract-views-connector-replaced.txt http://$CONNECT_URL/connectors
 
     echo -e "\n\n* Configuring Kibana Dashboard\n"
-    curl -X POST  "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/pos-dashboard.ndjson
-    curl -X POST  "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/monitoring-dashboard.ndjson
-    curl -X POST  "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/stability-dashboard.ndjson
+    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/pos-dashboard.ndjson
+    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/monitoring-dashboard.ndjson
+    curl -X POST -u $ELASTIC_USER:$ELASTIC_PASSWORD "$KIBANA_URL/api/saved_objects/_import" -H "kbn-xsrf: true" --form file=@$__CONF_DIR/kibana/stability-dashboard.ndjson
 
 fi
 
