@@ -30,7 +30,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_exchange-getBuyAndSellBuckets-true\",\n\t\"contractAddress\": \"0x12364a15F52b822F12dd858FAeEdC49F472fbA57\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getBuyAndSellBuckets\",\n\t\t\"contractName\": \"Exchange\",\n\t\t\"inputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"BOOL\", \"name\": \"sellGold\", \"value\":  \"true\"}],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"currentStableBucket\"},\n\t\t  {\"position\": 1, \"type\": \"UINT256\", \"name\": \"currentGoldBucket\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 10\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_exchange-getBuyAndSellBuckets-true\",\n\t\"contractAddress\": \"0x67316300f17f063085Ca8bCa4bd3f7a5a3C66275\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getBuyAndSellBuckets\",\n\t\t\"contractName\": \"Exchange\",\n\t\t\"inputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"BOOL\", \"name\": \"sellGold\", \"value\":  \"true\"}],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"currentStableBucket\"},\n\t\t  {\"position\": 1, \"type\": \"UINT256\", \"name\": \"currentGoldBucket\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 10\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -71,7 +71,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_exchange-exchanged\",\n\"contractAddress\": \"0x12364a15F52b822F12dd858FAeEdC49F472fbA57\",\n\"eventSpecification\": {\n  \"eventName\": \"Exchanged\",\n  \"contractName\": \"Exchange\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"exchanger\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"sellAmount\"},\n    {\"position\": 2, \"type\": \"UINT256\", \"name\": \"buyAmount\"},\n    {\"position\": 3, \"type\": \"BOOL\", \"name\": \"soldGold\"}] }\n}",
+									"raw": "{\n\"id\": \"e_exchange-exchanged\",\n\"contractAddress\": \"0x67316300f17f063085Ca8bCa4bd3f7a5a3C66275\",\n\"eventSpecification\": {\n  \"eventName\": \"Exchanged\",\n  \"contractName\": \"Exchange\",\n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"exchanger\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"sellAmount\"},\n    {\"position\": 2, \"type\": \"UINT256\", \"name\": \"buyAmount\"},\n    {\"position\": 3, \"type\": \"BOOL\", \"name\": \"soldGold\"}] }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -112,7 +112,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_sortedOracles-stableToken-medianRate\",\n\t\"contractAddress\": \"0x9A642a8A77635b5Df73eacF8ba389DcBb87BeE9b\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"medianRate\",\n\t\t\"contractName\": \"SortedOracles\",\n\t\t\"inputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"address\", \"value\":  \"0x5c7197E1147ebF98658A2a8Bc3D32BeBF1692829\"}],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"medianValue\"},\n\t\t  {\"position\": 1, \"type\": \"UINT256\", \"name\": \"denominator\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_sortedOracles-stableToken-medianRate\",\n\t\"contractAddress\": \"0xefB84935239dAcdecF7c5bA76d8dE40b077B7b33\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"medianRate\",\n\t\t\"contractName\": \"SortedOracles\",\n\t\t\"inputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"address\", \"value\":  \"0x5c7197E1147ebF98658A2a8Bc3D32BeBF1692829\"}],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"medianValue\"},\n\t\t  {\"position\": 1, \"type\": \"UINT256\", \"name\": \"denominator\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -153,7 +153,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_reserve-getReserveGoldBalance\",\n\t\"contractAddress\": \"0xD2A7FbC114a135c671E63FddE540D4a471265865\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getReserveGoldBalance\",\n\t\t\"contractName\": \"Reserve\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"goldBalance\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_reserve-getReserveGoldBalance\",\n\t\"contractAddress\": \"0x9380fA34Fd9e4Fd14c06305fd7B6199089eD4eb9\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getReserveGoldBalance\",\n\t\t\"contractName\": \"Reserve\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"goldBalance\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -194,7 +194,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_GoldToken_totalSupply\",\n\t\"contractAddress\": \"0x8dd4f800851Db9DC219fdFaEB82F8d69e2B13582\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"totalSupply\",\n\t\t\"contractName\": \"GoldToken\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_GoldToken_totalSupply\",\n\t\"contractAddress\": \"0x471EcE3750Da237f93B8E339c536989b8978a438\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"totalSupply\",\n\t\t\"contractName\": \"GoldToken\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -243,7 +243,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_validator-validatorepochpaymentdistributed\",\n\"contractAddress\": \"0xbD42aDBe4904c50827287536635C042f70721bF7\",\n\"eventSpecification\": {\n  \"eventName\": \"ValidatorEpochPaymentDistributed\",\n  \"contractName\": \"Validators\", \n    \"indexedParameterDefinitions\": [\n                  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"validator\"},\n                  {\"position\": 2, \"type\": \"ADDRESS\", \"name\": \"group\"}],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"validatorPayment\"},\n    {\"position\": 3, \"type\": \"UINT256\", \"name\": \"groupPayment\"}] }\n}"
+									"raw": "{\n\"id\": \"e_validator-validatorepochpaymentdistributed\",\n\"contractAddress\": \"0xaEb865bCa93DdC8F47b8e29F40C5399cE34d0C58\",\n\"eventSpecification\": {\n  \"eventName\": \"ValidatorEpochPaymentDistributed\",\n  \"contractName\": \"Validators\", \n    \"indexedParameterDefinitions\": [\n                  {\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"validator\"},\n                  {\"position\": 2, \"type\": \"ADDRESS\", \"name\": \"group\"}],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"validatorPayment\"},\n    {\"position\": 3, \"type\": \"UINT256\", \"name\": \"groupPayment\"}] }\n}"
 								},
 								"url": {
 									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
@@ -280,7 +280,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_epochrewards-targetvotingyieldupdated\",\n\"contractAddress\": \"0x1690e229c37219F0a10E102232de5E2591dE7dF5\",\n\"eventSpecification\": {\n  \"eventName\": \"TargetVotingYieldUpdated\",\n  \"contractName\": \"EpochRewards\", \n    \"indexedParameterDefinitions\": [],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 0, \"type\": \"UINT256\", \"name\": \"fraction\"}] }\n}"
+									"raw": "{\n\"id\": \"e_epochrewards-targetvotingyieldupdated\",\n\"contractAddress\": \"0x07F007d389883622Ef8D4d347b3f78007f28d8b7\",\n\"eventSpecification\": {\n  \"eventName\": \"TargetVotingYieldUpdated\",\n  \"contractName\": \"EpochRewards\", \n    \"indexedParameterDefinitions\": [],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 0, \"type\": \"UINT256\", \"name\": \"fraction\"}] }\n}"
 								},
 								"url": {
 									"raw": "{{AGENT_URL}}/api/rest/v1/event-filter",
@@ -316,7 +316,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\"id\": \"e_election-EpochRewardsDistributedToVoters\",\n\"contractAddress\": \"0xc54E26CA615884Ae5E6f67D75aEB3bB17648986b\",\n\"eventSpecification\": {\n  \"eventName\": \"EpochRewardsDistributedToVoters\",\n  \"contractName\": \"Election\", \n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"group\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"value\"}] \n\t\n  }\n}",
+									"raw": "{\n\"id\": \"e_election-EpochRewardsDistributedToVoters\",\n\"contractAddress\": \"0x8D6677192144292870907E3Fa8A5527fE55A7ff6\",\n\"eventSpecification\": {\n  \"eventName\": \"EpochRewardsDistributedToVoters\",\n  \"contractName\": \"Election\", \n  \"indexedParameterDefinitions\": [\n\t{\"position\": 0, \"type\": \"ADDRESS\", \"name\": \"group\"}\n  ],\n  \"nonIndexedParameterDefinitions\": [\n    {\"position\": 1, \"type\": \"UINT256\", \"name\": \"value\"}] \n\t\n  }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -357,7 +357,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_epochRewards-getTargetGoldTotalSupply\",\n\t\"contractAddress\": \"0x1690e229c37219F0a10E102232de5E2591dE7dF5\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getTargetGoldTotalSupply\",\n\t\t\"contractName\": \"EpochRewards\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_epochRewards-getTargetGoldTotalSupply\",\n\t\"contractAddress\": \"0x07F007d389883622Ef8D4d347b3f78007f28d8b7\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getTargetGoldTotalSupply\",\n\t\t\"contractName\": \"EpochRewards\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"amount\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -398,7 +398,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"id\": \"v_epochRewards-getRewardsMultiplier\",\n\t\"contractAddress\": \"0x1690e229c37219F0a10E102232de5E2591dE7dF5\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getRewardsMultiplier\",\n\t\t\"contractName\": \"EpochRewards\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"rewardsMultiplier\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
+									"raw": "{\n\t\"id\": \"v_epochRewards-getRewardsMultiplier\",\n\t\"contractAddress\": \"0x07F007d389883622Ef8D4d347b3f78007f28d8b7\",\n\t\"methodSpecification\": {\n\t\t\"methodName\": \"getRewardsMultiplier\",\n\t\t\"contractName\": \"EpochRewards\",\n\t\t\"inputParameterDefinitions\": [],\n\t\t\"outputParameterDefinitions\": [\n\t\t  {\"position\": 0, \"type\": \"UINT256\", \"name\": \"rewardsMultiplier\"}\n\t\t]\n    },\n    \"pollingStrategy\": {\n        \"blockInterval\": 25\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
