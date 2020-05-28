@@ -559,7 +559,7 @@
 		{
 			"id": "604b8c7a-280f-4975-bbc4-4b2968caf81c",
 			"key": "AGENT_URL",
-			"value": "localhost:8060",
+			"value": "agent:8060",
 			"type": "string"
 		}
 	],
