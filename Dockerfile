@@ -35,4 +35,4 @@ RUN mvn package
 
 RUN mv target/celo-monitoring-engine.jar celo-monitoring-engine.jar
 
-CMD /bin/bash -x celo-bin/run-monitoring.bash config && java -jar celo-monitoring-engine.jar
+CMD /bin/bash -x celo-bin/run-monitoring.bash config-agent && java -jar celo-monitoring-engine.jar
